@@ -12,4 +12,4 @@ void run_main_loop(void);
 // Завершение работы
 void system_shutdown(void);
 
-#endif // MAIN_H
+#endif     // MAIN_H

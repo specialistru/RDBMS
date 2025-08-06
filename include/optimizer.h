@@ -6,4 +6,4 @@ void optimizer_init(void);
 void optimizer_optimize(void);
 void optimizer_shutdown(void);
 
-#endif // OPTIMIZER_H
+#endif     // OPTIMIZER_H
