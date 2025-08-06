@@ -1,0 +1,34 @@
+name: SAP_HANA_PLUS_Grade
+
+on:
+  workflow_dispatch:
+
+jobs:
+  sync-chatgpt-code:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🔹 Checkout репозитория
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Настройка Git от имени specialistru
+        run: |
+          git config --global user.name "specialistru"
+          git config --global user.email "213274794+specialistru@users.noreply.github.com"
+
+      - name: 📂 Добавление и коммит с реальным сообщением
+        run: |
+          if [ -d "generated_code" ]; then
+            git add generated_code/
+            CHANGES=$(git diff --cached --name-only)
+            if [ -n "$CHANGES" ]; then
+              git commit -m "изменения: " -m "$CHANGES"
+            else
+              echo "Нет изменений — коммит не требуется."
+            fi
+          else
+            echo "❌ Папка generated_code отсутствует. Пропускаем."
+          fi
+
+      - name: 🚀 Push в ветку main
+        run: git push
